@@ -1,0 +1,1 @@
+[Section 6](https://www.udemy.com/course/react-native-the-practical-guide/learn/lecture/31197628#overview) from Udemy Course: React Native the Practical Guide
