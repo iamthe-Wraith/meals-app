@@ -8,9 +8,10 @@ import { RootParamList } from './types/global';
 import { Meal } from './screens/Meal';
 import 'react-native-gesture-handler';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { Favorites } from './screens/Favorites';
 import { DefaultDrawerHeaderOptions, DefaultStackHeaderOptions } from './config/screen';
+import { FavoritesStore } from './store/contexts/favorites';
 
 const Stack = createNativeStackNavigator<RootParamList>();
 const Drawer = createDrawerNavigator<RootParamList>();
@@ -38,25 +39,27 @@ const DrawNavigator: FC = () => (
 export default function App() {
   return (
     <>
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={ DefaultStackHeaderOptions }>
-          <Stack.Screen
-            name='Drawer'
-            component={ DrawNavigator }
-            options={ {
-              headerShown: false,
-            } }
-          />
-          <Stack.Screen
-            name='MealsOverview'
-            component={ MealsOverview }
-          />
-          <Stack.Screen
-            name='Meal'
-            component={ Meal }
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <FavoritesStore>
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={ DefaultStackHeaderOptions }>
+            <Stack.Screen
+              name='Drawer'
+              component={ DrawNavigator }
+              options={ {
+                headerShown: false,
+              } }
+            />
+            <Stack.Screen
+              name='MealsOverview'
+              component={ MealsOverview }
+            />
+            <Stack.Screen
+              name='Meal'
+              component={ Meal }
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </FavoritesStore>
       <StatusBar style='light' />
     </>
   );
